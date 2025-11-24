@@ -42,5 +42,5 @@ ipykernel
 openai-agents
 python-dotenv
 tavily-python
-gradio>=5.0.1
+gradio>=5.7.1
 requests>=2.31.0
