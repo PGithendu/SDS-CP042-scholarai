@@ -5,7 +5,7 @@ colorFrom: blue
 colorTo: purple
 sdk: gradio
 sdk_version: 4.44.0
-app_file: submissions/team-members/sheila-adams-sapper/app.py
+app_file: beginner/submissions/team-members/sheila-adams-sapper/app.py
 pinned: false
 license: mit
 ---
