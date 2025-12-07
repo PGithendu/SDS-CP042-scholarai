@@ -42,3 +42,6 @@ ipykernel
 openai-agents 
 python-dotenv 
 tavily-python 
+gradio
+openai
+requests
