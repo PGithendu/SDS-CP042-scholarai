@@ -3,5 +3,5 @@ openai==0.28
 requests
 python-dotenv
 gradio
-tavily-python
-openai-agents
+##tavily-python
+##openai-agents
