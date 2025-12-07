@@ -129,7 +129,7 @@ class CriticAgent:
         )
         return response.choices[0].message.content
 
-def orchestrate(topic: str, style: str = "academic"):
+def orchestrate(topic: str, style: str = "academic", max_retries: int = 2):
     try:
         api_key = os.getenv("OPENAI_API_KEY")
         serpapi_key = os.getenv("SERPAPI_API_KEY")
@@ -155,8 +155,17 @@ def orchestrate(topic: str, style: str = "academic"):
         critic = CriticAgent(api_key=api_key)
         critic_review = critic.review(final_report)
 
-        # Self-critique loop: refine the report using the critic's feedback
-        improved_report = synthesizer.refine(final_report, critic_review, style=style)
+        improved_report = final_report
+        retries = 0
+        # Self-critique loop: refine the report using the critic's feedback, up to max_retries
+        while retries < max_retries:
+            # Check for keywords indicating issues
+            if any(word in critic_review.lower() for word in ["error", "unsupported", "clarification", "inaccurate", "incorrect", "issue", "problem"]):
+                improved_report = synthesizer.refine(improved_report, critic_review, style=style)
+                critic_review = critic.review(improved_report)
+                retries += 1
+            else:
+                break
 
         summary = improved_report
         findings = "\n\n".join([f"{r['subtopic']}:\n{r['summary']}" for r in researcher_results])
