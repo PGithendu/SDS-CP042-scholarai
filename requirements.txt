@@ -39,9 +39,10 @@ ipykernel
 # sqlalchemy
 # openpyxl
 
-openai-agents 
-python-dotenv 
-tavily-python 
-gradio
+streamlit
 openai
 requests
+python-dotenv
+gradio
+tavily-python
+openai-agents
