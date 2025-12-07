@@ -40,7 +40,7 @@ ipykernel
 # openpyxl
 
 streamlit
-openai
+openai==0.28
 requests
 python-dotenv
 gradio
